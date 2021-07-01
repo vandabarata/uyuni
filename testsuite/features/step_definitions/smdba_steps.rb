@@ -157,7 +157,7 @@ When(/^in the database I create dummy table "(.*?)" with column "(.*?)" and valu
     $server.run("sudo -u postgres psql -d #{$db} -c 'select * from dummy' 2>/dev/null", check_errors: false)[0],
     val
   )
-  puts "Table \"#{tbl}\" has been created with some dummy data inside"
+  log "Table \"#{tbl}\" has been created with some dummy data inside"
 end
 
 When(/^I restore database from the backup$/) do
