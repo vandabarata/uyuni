@@ -25,16 +25,13 @@ import com.redhat.rhn.domain.notification.types.ChannelSyncFailed;
 import com.redhat.rhn.domain.notification.types.ChannelSyncFinished;
 import com.redhat.rhn.domain.role.RoleFactory;
 
+import com.redhat.rhn.manager.content.ubuntu.UbuntuErrataManager;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Used for syncing repos (like yum repos) to a channel.
@@ -100,6 +97,11 @@ public class RepoSyncTask extends RhnJavaJob {
             else {
                 log.error("No such channel with channel_id " + channelId);
             }
+        }
+        try {
+            UbuntuErrataManager.processUbuntuErrataByIds(new HashSet<>(channelIds));
+        } catch (IOException e) {
+            log.error(e);
         }
     }
 
