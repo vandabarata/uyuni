@@ -32,10 +32,17 @@ public class EmptyVarcharInterceptor extends EmptyInterceptor {
 
     private static final long serialVersionUID = 5351605245345217308L;
 
-    private static final Logger LOG = Logger
-            .getLogger(EmptyVarcharInterceptor.class);
+    private static final Logger LOG = Logger.getLogger(EmptyVarcharInterceptor.class);
 
-    private boolean autoConvert = false;
+    private boolean autoConvert;
+
+    public EmptyVarcharInterceptor() {
+        this(false);
+    }
+
+    public EmptyVarcharInterceptor(boolean autoConvertIn) {
+        this.autoConvert = autoConvertIn;
+    }
 
     protected static boolean emptyStringToNull(Object entity, Serializable id,
             Object[] state, String[] propertyNames, Type[] types,
