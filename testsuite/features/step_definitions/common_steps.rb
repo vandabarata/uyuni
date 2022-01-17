@@ -85,7 +85,7 @@ Then(/^the uptime for "([^"]*)" should be correct$/) do |host|
   uptime_seconds = uptime_seconds.to_f.round
 
   if uptime_days < 2 and uptime_days >= 1
-    step %(I should see a "#{uptime_days.round} day ago" text)
+    step %(I should see a "a day ago" text)
   elsif uptime_days < 1 and uptime_hours >= 2
     step %(I should see a "#{uptime_hours.round} hours ago" text)
   elsif uptime_days < 1 and uptime_hours < 2
